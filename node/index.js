@@ -25,7 +25,7 @@ var shouldLog = true;
 
 function runUserClient(userId, groupTopic) {
     const userClient = mqtt.connect(`mqtt://${config.host}:${config.port}`, {
-        clientId: `stress-test-${userId}`,
+        clientId: `node-stress-test-${userId}`,
         clean: false
     });
 
