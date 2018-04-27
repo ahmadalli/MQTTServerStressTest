@@ -2,9 +2,11 @@
 
 const mqtt = require('mqtt');
 
-const usersCount = 2000;
-const usersPergroup = 20;
-const userMessagePerSecond = 10;
+const config = require("./configs");
+
+const usersCount = config.test.usersCount;
+const usersPergroup = config.test.usersPergroup;
+const userMessagePerSecond = config.test.userMessagePerSecond;
 
 const userMessageInterval = 1000 / userMessagePerSecond;
 const groupsCount = usersCount / usersPergroup;
@@ -22,8 +24,8 @@ for (var groupId = 0; groupId < groupsCount; groupId++) {
 var shouldLog = true;
 
 function runUserClient(userId, groupTopic) {
-    const userClient = mqtt.connect('mqtt://localhost', {
-        clientId: `highload-test-${userId}`,
+    const userClient = mqtt.connect(`mqtt://${config.host}:${config.port}`, {
+        clientId: `stress-test-${userId}`,
         clean: false
     });
 
@@ -59,9 +61,9 @@ function runUserClient(userId, groupTopic) {
         console.log(`user ${userId} offline`);
     });
 
-    userClient.on('message', function (topic, message) {
-        console.log(`user ${userId} received message: ${message}`);
-    });
+    // userClient.on('message', function (topic, message) {
+    //     console.log(`user ${userId} received message: ${message}`);
+    // });
 
     userClient.on('error', function (err) {
         console.log(`user ${userId} error: ${err}`);
