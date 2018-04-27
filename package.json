@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/ahmadalli/MQTTServerStressTest/issues"
   },
-  "homepage": "https://github.com/ahmadalli/MQTTServerStressTest#readme"
+  "homepage": "https://github.com/ahmadalli/MQTTServerStressTest#readme",
+  "dependencies": {
+    "mqtt": "^2.17.0"
+  }
 }
